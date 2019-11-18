@@ -1,0 +1,26 @@
+version: '3'
+
+services: 
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "15432:5432"
+    networks: 
+      - postgres-network
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "docker"
+      PGADMIN_DEFAULT_PASSWORD: "docker"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres
+    networks: 
+      - postgres-network
+networks: 
+  postgres-network:
+    driver: bridge

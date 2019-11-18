@@ -1,0 +1,58 @@
+{
+  "name": "reborn",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=prod node src/server.js",
+    "test": "NODE_ENV=test jest --watch --verbose=true",
+    "coverage": "NODE_ENV=test jest --coverage --runInBand --forceExit",
+    "lint": "eslint src/** __tests__/** --fix"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "consign": "^0.1.6",
+    "cors": "^2.8.5",
+    "dotenv-safe": "^8.1.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.19.5",
+    "knex-logger": "^0.1.0",
+    "moment": "^2.24.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "pg": "^7.12.1",
+    "uuidv4": "^5.0.1",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.19",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "husky": "^3.0.9",
+    "iconv-lite": "^0.5.0",
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.4",
+    "supertest": "^4.0.2"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "statements": 80,
+        "branches": 80,
+        "functions": 80,
+        "lines": 80
+      },
+      "./src/services": {
+        "lines": 100
+      }
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint && yarn coverage"
+    }
+  }
+}
